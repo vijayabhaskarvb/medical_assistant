@@ -2,8 +2,9 @@
 flask
 gunicorn
 
-# TensorFlow & Keras (for brain tumor, pneumonia, diabetic retinopathy)
-tensorflow
+# TensorFlow & Keras - PINNED to match local training versions
+tensorflow==2.15.0
+keras==2.15.0
 
 # Computer Vision
 opencv-python-headless
