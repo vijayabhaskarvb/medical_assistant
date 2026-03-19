@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-model = load_model("models/pneumonia_model.keras")
+model = load_model("models/pneumonia_model.h5")
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 

@@ -32,3 +32,6 @@ sentence-transformers
 
 # Environment Variables
 python-dotenv
+
+#h5model
+h5py
