@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical AI System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">🧬</div>
+    <div>
+      <h2>Medical AI</h2>
+      <span>Diagnostic System</span>
+    </div>
+  </div>
+
+  <a href="/"><span class="nav-icon">⬛</span> Dashboard</a>
+  <a href="/disease"><span class="nav-icon">🔬</span> Disease Prediction</a>
+  <a href="/chatbot"><span class="nav-icon">💬</span> Medical Chatbot</a>
+  <a href="/brain"><span class="nav-icon">🧠</span> Brain Tumor</a>
+  <a href="/pneumonia"><span class="nav-icon">🫁</span> Pneumonia</a>
+  <a href="/dr"><span class="nav-icon">👁️</span> Diabetic Retinopathy</a>
+  <a href="/heart"><span class="nav-icon">❤️</span> Heart Disease</a>
+
+  <div class="sidebar-footer">
+    Final Year Project<br>AI Diagnostic Suite
+  </div>
+</div>
+
+<div class="main">
+  {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

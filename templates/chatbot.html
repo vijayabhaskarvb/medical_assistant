@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="page-header">
+  <h2>💬 Medical Chatbot</h2>
+  <p>Ask any medical question and receive an AI-powered answer</p>
+</div>
+
+<div class="chat-wrapper">
+
+  <div id="chatbox">
+    <div class="chat-msg bot">
+      <div class="label">Medical AI</div>
+      <div class="bubble">Hello! I'm your Medical AI assistant. Ask me anything about symptoms, conditions, medications, or general health advice.</div>
+    </div>
+  </div>
+
+  <div class="chat-input-row">
+    <input id="msg" type="text" placeholder="Ask a medical question…" onkeydown="if(event.key==='Enter') send()">
+    <button onclick="send()">Send →</button>
+  </div>
+
+</div>
+
+<script>
+async function send() {
+  const input = document.getElementById("msg");
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const box = document.getElementById("chatbox");
+
+  // User message
+  box.innerHTML += `
+    <div class="chat-msg user">
+      <div class="label">You</div>
+      <div class="bubble">${msg}</div>
+    </div>`;
+
+  // Typing indicator
+  const typingId = "typing-" + Date.now();
+  box.innerHTML += `
+    <div class="chat-msg bot" id="${typingId}">
+      <div class="label">Medical AI</div>
+      <div class="bubble" style="opacity:0.5;">Thinking…</div>
+    </div>`;
+
+  input.value = "";
+  box.scrollTop = box.scrollHeight;
+
+  try {
+    const res = await fetch("/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: msg })
+    });
+    const data = await res.json();
+
+    // Replace typing indicator with real response
+    const typingEl = document.getElementById(typingId);
+    if (typingEl) {
+      typingEl.querySelector(".bubble").style.opacity = "1";
+      typingEl.querySelector(".bubble").innerHTML = data.reply.replace(/\n/g, "<br>");
+    }
+  } catch (err) {
+    const typingEl = document.getElementById(typingId);
+    if (typingEl) {
+      typingEl.querySelector(".bubble").textContent = "Sorry, the chatbot is temporarily unavailable.";
+    }
+  }
+
+  box.scrollTop = box.scrollHeight;
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+# Web Framework
+flask
+gunicorn
+
+# TensorFlow & Keras (for brain tumor, pneumonia, diabetic retinopathy)
+tensorflow
+
+# Computer Vision
+opencv-python-headless
+
+# Data & ML
+numpy
+pandas
+scikit-learn
+
+# LangChain core
+langchain
+langchain-core
+langchain-community
+langchain-groq
+langchain-pinecone
+
+# Vector Database
+pinecone-client
+
+# HuggingFace Embeddings
+sentence-transformers
+
+# Environment Variables
+python-dotenv

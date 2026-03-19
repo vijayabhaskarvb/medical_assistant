@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="page-header">
+  <h2>🫁 Pneumonia Detection</h2>
+  <p>Upload a chest X-ray image for pneumonia screening</p>
+</div>
+
+<div class="form-section">
+  <form method="POST" enctype="multipart/form-data" onsubmit="this.classList.add('loading')">
+    <div class="form-group">
+      <label>Chest X-Ray Image</label>
+      <input type="file" name="image" accept="image/*" required>
+    </div>
+    <button type="submit">
+      <span class="btn-text">Analyze X-Ray &nbsp;→</span>
+      <span class="spinner"></span>
+    </button>
+  </form>
+</div>
+
+{% if image and heatmap %}
+<div class="image-container">
+  <div class="image-box">
+    <h3>Original X-Ray</h3>
+    <img src="{{ url_for('uploaded_file', filename=image) }}" alt="X-Ray">
+  </div>
+  <div class="image-box">
+    <h3>Heatmap Detection</h3>
+    <img src="{{ url_for('uploaded_file', filename=heatmap) }}" alt="Heatmap">
+  </div>
+</div>
+{% endif %}
+
+{% if result %}
+<div class="result">
+  <div class="result-badge">🔬 Analysis Complete</div>
+  <h3>{{ result }}</h3>
+
+  <div class="confidence-bar-wrap">
+    <div class="confidence-label">
+      <span>Confidence</span>
+      <span>{{ confidence }}%</span>
+    </div>
+    <div class="confidence-bar">
+      <div class="confidence-fill" style="width: {{ confidence }}%"></div>
+    </div>
+  </div>
+
+  <h4>Medical Explanation</h4>
+  <div class="ai-box">{{ explanation }}</div>
+</div>
+{% endif %}
+
+{% endblock %}

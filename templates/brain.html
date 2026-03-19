@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="page-header">
+  <h2>🧠 Brain Tumor Detection</h2>
+  <p>Upload an MRI scan — the model will detect and highlight potential tumor regions</p>
+</div>
+
+<div class="form-section">
+  <form method="POST" enctype="multipart/form-data" onsubmit="this.classList.add('loading')">
+    <div class="form-group">
+      <label>MRI Image</label>
+      <input type="file" name="image" accept="image/*" required>
+    </div>
+    <button type="submit">
+      <span class="btn-text">Analyze MRI &nbsp;→</span>
+      <span class="spinner"></span>
+    </button>
+  </form>
+</div>
+
+{% if image and heatmap %}
+<div class="image-container">
+  <div class="image-box">
+    <h3>Original Scan</h3>
+    <img src="{{ url_for('uploaded_file', filename=image) }}" alt="Original MRI">
+  </div>
+  <div class="image-box">
+    <h3>Heatmap Detection</h3>
+    <img src="{{ url_for('uploaded_file', filename=heatmap) }}" alt="Heatmap">
+  </div>
+</div>
+{% endif %}
+
+{% if result %}
+<div class="result">
+  <div class="result-badge">🧬 Analysis Complete</div>
+  <h3>{{ result }}</h3>
+
+  <div class="confidence-bar-wrap">
+    <div class="confidence-label">
+      <span>Confidence</span>
+      <span>{{ confidence }}%</span>
+    </div>
+    <div class="confidence-bar">
+      <div class="confidence-fill" style="width: {{ confidence }}%"></div>
+    </div>
+  </div>
+
+  <h4>Medical Explanation</h4>
+  <div class="ai-box">{{ explanation }}</div>
+</div>
+{% endif %}
+
+{% endblock %}

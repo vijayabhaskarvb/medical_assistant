@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="page-header">
+  <h2>❤️ Heart Disease Prediction</h2>
+  <p>Fill in the clinical indicators below to assess cardiovascular risk</p>
+</div>
+
+<div class="form-section" style="max-width:800px;">
+  <form method="POST" onsubmit="this.classList.add('loading')">
+
+    <div class="heart-grid">
+
+      <div class="form-group">
+        <label>General Health</label>
+        <select name="health">
+          <option>Poor</option>
+          <option>Fair</option>
+          <option>Good</option>
+          <option>Very good</option>
+          <option>Excellent</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Last Checkup</label>
+        <select name="checkup">
+          <option>Never</option>
+          <option>Within 5 years</option>
+          <option>Within 2 years</option>
+          <option>Within 1 year</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Regular Exercise</label>
+        <select name="exercise">
+          <option>No</option>
+          <option>Yes</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Depression</label>
+        <select name="depression">
+          <option>No</option>
+          <option>Yes</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Diabetes</label>
+        <select name="diabetes">
+          <option>No</option>
+          <option>Yes</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Arthritis</label>
+        <select name="arthritis">
+          <option>No</option>
+          <option>Yes</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Biological Sex</label>
+        <select name="sex">
+          <option>Female</option>
+          <option>Male</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Age Group</label>
+        <select name="age">
+          <option>18-24</option><option>25-29</option><option>30-34</option>
+          <option>35-39</option><option>40-44</option><option>45-49</option>
+          <option>50-54</option><option>55-59</option><option>60-64</option>
+          <option>65-69</option><option>70-74</option><option>75-79</option>
+          <option>80+</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>BMI</label>
+        <input type="text" name="bmi" placeholder="e.g. 24.5">
+      </div>
+
+      <div class="form-group">
+        <label>Smoking Status</label>
+        <select name="smoking">
+          <option>Never</option>
+          <option>Former</option>
+          <option>Current</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Alcohol (drinks/week)</label>
+        <input type="text" name="alcohol" placeholder="e.g. 3">
+      </div>
+
+    </div>
+
+    <div style="margin-top: 24px;">
+      <button type="submit">
+        <span class="btn-text">Predict Risk &nbsp;→</span>
+        <span class="spinner"></span>
+      </button>
+    </div>
+
+  </form>
+</div>
+
+{% if result %}
+<div class="result" style="max-width:640px;">
+  <div class="result-badge">❤️ Prediction Complete</div>
+  <h3>{{ result }}</h3>
+</div>
+{% endif %}
+
+{% endblock %}

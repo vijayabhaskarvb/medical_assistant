@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="page-header">
+  <h2>🔬 Disease Prediction</h2>
+  <p>Enter patient symptoms separated by commas for an AI-powered diagnosis</p>
+</div>
+
+<div class="form-section">
+  <form method="POST" onsubmit="this.classList.add('loading')">
+    <div class="form-group">
+      <label>Symptoms (comma separated)</label>
+      <input type="text" name="symptoms" placeholder="fever, headache, nausea, fatigue" required>
+    </div>
+    <button type="submit">
+      <span class="btn-text">Predict Disease &nbsp;→</span>
+      <span class="spinner"></span>
+    </button>
+  </form>
+</div>
+
+{% if result %}
+<div class="result">
+  <div class="result-badge">🔬 Diagnosis Complete</div>
+  <h3>{{ result.disease }}</h3>
+
+  <h4>Description</h4>
+  <p>{{ result.description }}</p>
+
+  <div class="disease-grid">
+
+    <div class="disease-section">
+      <h4>Precautions</h4>
+      <ul>
+        {% for p in result.precautions %}
+        <li>{{ p }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="disease-section">
+      <h4>Medications</h4>
+      <ul>
+        {% for m in result.medications %}
+        <li>{{ m }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="disease-section">
+      <h4>Recommended Diet</h4>
+      <ul>
+        {% for d in result.diets %}
+        <li>{{ d }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="disease-section">
+      <h4>Workout / Activity</h4>
+      <ul>
+        {% for w in result.workout %}
+        <li>{{ w }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
