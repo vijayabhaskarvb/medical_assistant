@@ -13,6 +13,9 @@ numpy
 pandas
 scikit-learn
 
+# Groq (direct client for vision + chat)
+groq
+
 # LangChain core
 langchain
 langchain-core
