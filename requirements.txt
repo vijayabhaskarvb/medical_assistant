@@ -2,7 +2,7 @@
 flask
 gunicorn
 
-# TensorFlow & Keras - PINNED to match local training versions
+# TensorFlow & Keras - pinned to match h5 model format
 tensorflow==2.16.1
 keras==3.3.3
 
@@ -12,7 +12,7 @@ opencv-python-headless
 # Data & ML
 numpy
 pandas
-scikit-learn
+scikit-learn==1.6.1
 
 # Groq (direct client for vision + chat)
 groq
@@ -32,6 +32,3 @@ sentence-transformers
 
 # Environment Variables
 python-dotenv
-
-#h5model
-h5py
