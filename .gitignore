@@ -2,6 +2,5 @@
 __pycache__/
 *.pyc
 uploads/
-*.pkl
 *.joblib
 trails.ipynb
